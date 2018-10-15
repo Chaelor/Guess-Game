@@ -1,0 +1,14 @@
+.title{
+  height: 35vh;
+  border-bottom: 5px solid rgba(119, 119, 119, 0.3);
+}
+
+.title--text{
+  position: relative;
+  margin: 0 auto;
+  padding: 0;
+  width: 200px;
+  top: 40%;
+  color: white;
+  text-align: center;
+}
