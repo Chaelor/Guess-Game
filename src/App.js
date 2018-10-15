@@ -1,26 +1,31 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
+import digimon from './digimon.json';
+import DigiCard from './components/DigiCard';
+import Title from './components/Title';
+import Wrapper from './components/Wrapper';
+
 
 class App extends Component {
+
+  state = {
+    digimon
+  };
+
   render() {
+
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
+      <Wrapper>
+      <Title>Digi Match!</Title>
+        {this.state.digimon.map(renderMon => (
+          <DigiCard
+            id={renderMon.id}
+            key={renderMon.id}
+            image={renderMon.image}
+            name={renderMon.name}
+          />
+        ))}
+      </Wrapper>
     );
   }
 }

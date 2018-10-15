@@ -1,0 +1,42 @@
+[
+  {
+    "id": 1,
+    "name": "Agumon",
+    "image": "./img/agumon.png"
+  },
+  {
+    "id": 2,
+    "name": "Biyomon",
+    "image": "./img/biyomon.png"
+  },
+  {
+    "id": 3,
+    "name": "Gabumon",
+    "image": "./img/gabumon.png"
+  },
+  {
+    "id": 4,
+    "name": "Gomamon",
+    "image": "./img/gomamon.png"
+  },
+  {
+    "id": 5,
+    "name": "Palmon",
+    "image": "./img/palmon.png"
+  },
+  {
+    "id": 6,
+    "name": "Patamon",
+    "image": "./img/patamon.png"
+  },
+  {
+    "id": 7,
+    "name": "Salamon",
+    "image": "./img/salamon.png"
+  },
+  {
+    "id": 8,
+    "name": "Tentomon",
+    "image": "./img/tentomon.png"
+  }
+]
