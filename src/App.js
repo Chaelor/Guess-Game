@@ -9,59 +9,66 @@ let clickedArr = [];
 let highScore = 0;
 let currentScore = 0;
 
-function reset()  {
+function reset() {
   clickedArr = [];
   currentScore = 0;
   document.getElementById('currentScore').textContent = currentScore;
 }
 
+
 class App extends Component {
 
   state = {
-    digimon
+    digimon: digimon
   };
-  
+
+  shuffle = (array) => {
+    for (let i = array.length - 1; i > 0; i--) {
+      let j = Math.floor(Math.random() * (i + 1));
+      [array[i], array[j]] = [array[j], array[i]];
+    }
+  }
+
   clickMe = (id) => {
-    if(clickedArr.includes(id)){
+    this.shuffle(digimon);
+
+    if (clickedArr.includes(id)) {
       reset();
-      console.log("HighScore: " + highScore);
-      console.log("Current Score: " + currentScore);
-    }else{
+    } else {
       clickedArr.push(id);
-      
-      if( currentScore === highScore ){
+
+
+      this.setState({
+        digimon: digimon
+      })
+      if (currentScore === highScore) {
         highScore++;
       }
       currentScore++;
       document.getElementById('currentScore').textContent = currentScore;
       document.getElementById('highScore').textContent = highScore;
-      
-      console.log("HighScore: " + highScore);
-      console.log("Current Score: " + currentScore);
     }
-    console.log(clickedArr);
   }
-  
+
   render() {
-    
 
     return (
       <Wrapper>
-      <Title
-        currentScore={currentScore}
-        highScore={highScore}
-      />
-      <div className="container">
-        {this.state.digimon.map(renderMon => (
-          <DigiCard
-            id={renderMon.id}
-            key={renderMon.id}
-            image={renderMon.image}
-            name={renderMon.name}
-            clickMon={this.clickMe}
-          />
-        ))}
-      </div>
+        <Title
+          currentScore={currentScore}
+          highScore={highScore}
+        />
+        <div className="container">
+          {this.state.digimon.map(digimon => (
+            <DigiCard
+              id={digimon.id}
+              key={digimon.id}
+              image={digimon.image}
+              name={digimon.name}
+              clickMon={this.clickMe}
+            />
+          ))}
+        </div>
       </Wrapper>
     );
   }

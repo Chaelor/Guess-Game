@@ -6,4 +6,11 @@
 img{
   width: 200px;
   height: 200px;
+  cursor: pointer;
 }
+
+img:hover{
+  transform: scale(1.5);
+  transition: all .25s;
+}
+
