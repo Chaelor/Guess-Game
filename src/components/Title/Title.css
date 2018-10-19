@@ -13,7 +13,17 @@
   text-align: center;
 }
 
+.green{
+  transition: all .25s;
+  color: green;
+}
+
 .red{
   transition: all .25s;
   color: red;
+}
+
+.victory{
+  transition: all .25s;
+  color: cyan;
 }

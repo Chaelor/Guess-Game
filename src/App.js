@@ -9,7 +9,7 @@ let clickedArr = [];
 
 
 class App extends Component {
-  
+
   state = {
     digimon: digimon,
     message: "Click on a Digimon to begin! Don't click the same one twice, that's how you lose!",
@@ -18,8 +18,8 @@ class App extends Component {
     clickedArr: [],
     classNames: "title--text"
   };
-  
-  
+
+
   //This is what shuffles the array. It is called
   //At the start of the handleClick function. It will
   //Rescramble all the pictures in the array.
@@ -29,57 +29,57 @@ class App extends Component {
       [array[i], array[j]] = [array[j], array[i]];
     }
   }
-  
+
   //Handles the click. Takes in the ID of the corresponding click
   //Saves it to the clicked array if it isn't clicked
   handleClick = (id) => {
-    
+
     this.shuffle(digimon);
-    
-    if (this.state.currentScore === 8) {
+
+    //This is called if the user clicks the same picture twice
+    //This is the reset
+    if (clickedArr.includes(id)) {
+
+      //Reset the state, tell the user they messed up.
       this.setState({
-        messsage: "Congratulations! You've won the game, click another Digimon to try again!",
-        currentScore: 0
-      })
-      
+        message: "You guessed incorrectly, try again!",
+        currentScore: 0,
+        classNames: "title--text red"
+      });
+
+      //Reset and clear the array.
       clickedArr = [];
-      
+
     } else {
-      
-      //This is called if the user clicks the same picture twice
-      //This is the reset
-      if (clickedArr.includes(id)) {
 
-        //Reset the state, tell the user they messed up.
+      //Push the ID to an array.
+      //This ID will be used to see if the user already click on this id.
+      clickedArr.push(id);
+
+      //Add 1 to the state, tell the user they guessed correctly
+      this.setState({
+        digimon: digimon,
+        message: "You guessed correctly, keep going!",
+        currentScore: this.state.currentScore + 1,
+        classNames: "title--text green"
+      })
+
+      //Increment the highscore based on the current score.
+      if (this.state.currentScore >= this.state.highScore) {
         this.setState({
-          message: "You guessed incorrectly, try again!",
-          currentScore: 0
-        });
+          highScore: this.state.highScore + 1
+        })
+      }
 
-        //Reset and clear the array.
-        clickedArr = [];
-
-      } else {
-        
-        //Push the ID to an array.
-        //This ID will be used to see if the user already click on this id.
-        clickedArr.push(id);
-
-        //Add 1 to the state, tell the user they guessed correctly
+      if (this.state.currentScore === 7) {
         this.setState({
-          digimon: digimon,
-          message: "You guessed correctly, keep going!",
-          currentScore: this.state.currentScore + 1,
-          classNames: "title--text green"
+          message: "Congratulations! You've won the game, click another Digimon to try again!",
+          currentScore: 0,
+          classNames: "title--text victory"
         })
 
-        //Increment the highscore based on the current score.
-        if (this.state.currentScore >= this.state.highScore) {
-          this.setState({
-            highScore: this.state.highScore + 1
-          })
-        }
-        
+        clickedArr = [];
+
       }
     }
   }
