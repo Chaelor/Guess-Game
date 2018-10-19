@@ -7,8 +7,13 @@
   position: relative;
   margin: 0 auto;
   padding: 0;
-  width: 200px;
+  /* width: 200px; */
   top: 40%;
   color: white;
   text-align: center;
+}
+
+.red{
+  transition: all .25s;
+  color: red;
 }
